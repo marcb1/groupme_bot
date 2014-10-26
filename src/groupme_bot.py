@@ -24,14 +24,6 @@ def send(text):
 	}
 	r = requests.post("https://api.groupme.com/v3/bots/post", params = message)
 
-def handle_message(message):
-        if '' in message.lower():
-          send('Did someone mention me')
-          send("")
-        if '' in message.lower():
-          send('Did someone mention me')
-          send("")
-        
 @app.route('/', methods=['POST'])
 def message():
 	if not request.json or not 'text' in request.json:
@@ -43,7 +35,7 @@ def message():
 	message = stripped(message).strip()
 
         print 'Got message' + message
-        handle_message(message)
+        message_callback.got_message(message, nick);
         return ''
 
 if __name__ == "__main__":
